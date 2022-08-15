@@ -18,10 +18,14 @@ for(var index = 0; index < numberOfDrumButtons; index++)
 {
     document.querySelectorAll(".drum")[index]
        .addEventListener("click", function(){
+                // Play the sound which button is clicked
                 var buttonInnerHTML = this.innerHTML;
                 makeSound(buttonInnerHTML);
+
+                // generate the button
+                buttonAnimation(buttonInnerHTML);
                 
-            }// Play the sound which button is clicked
+            }
         ); 
 }
 
@@ -67,4 +71,14 @@ function makeSound(key){
             break;
         default: console.log();
     }
+}
+
+// generate the animation
+function buttonAnimation(currentKey)
+{
+   var activeButton = document.querySelector("." + currentKey); // period so the format is the same to the class
+   activeButton.classList.add("pressed");
+   setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
